@@ -155,7 +155,8 @@
 							"var jsonData = pm.response.json();",
 							"pm.test(\"check label\", function () {",
 							"    pm.expect(jsonData.labels[0].name).to.eql(\"bug\");",
-							"});"
+							"});",
+							"console.log(jsonData.labels)"
 						],
 						"type": "text/javascript"
 					}
@@ -211,7 +212,7 @@
 						},
 						{
 							"key": "repo",
-							"value": "Hello-World-2"
+							"value": "{{repositoryname}}"
 						}
 					]
 				}
@@ -220,6 +221,21 @@
 		},
 		{
 			"name": "delete repository",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cb66c935-3fe1-415b-9ede-6b2667d15098",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
